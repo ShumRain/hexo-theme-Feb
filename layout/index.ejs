@@ -1,14 +1,18 @@
 <section class="article-list wrap">
 <% page.posts.each(function (post, index) { %>
 	<article class="article-item">
-		<% if(theme.banner[index]) {%>
-		<div class="article-cover" style="background-image: url(<%= theme.banner[index].url %>)">
-		<% } else {%>
-		<div class="article-cover">
-		<% } %>
+		<div class="article-inner">
+			<% if(theme.banner[index]) {%>	
+			<div class="article-cover lazy-bg blur"
+			style="background-image: url(<%= String(theme.banner[(Number(page.current) -1)*6 + index].url) + '?imageView2/2/w/64/h/200/format/webp/q/75' %>)"
+			data-lazy="<%= String(theme.banner[(Number(page.current) -1)*6 + index].url) + '?imageView2/0/format/webp/q/75' %>">
+			</div>
+			<% } else {%>
+				<div class="article-cover"></div>
+			<% } %>
 			<a href="/<% url_for(post.path) %><%- post.path %>">
 				<h3 class="article-title"><%= post.title %></h3>
-				<ul class="article-info">
+				<div class="article-info">
 					<p class="article-time"><%= post.date.format("DD") %> <%= post.date.format("MMM") %> <%= post.date.format("YYYY") %></p>
 					<ul class="tag">
 						<% post.tags.forEach(function(i) { %>
@@ -21,3 +25,5 @@
 	</article>
 <% }) %>
 </section>
+
+<%- partial('_partial/pagination') %>

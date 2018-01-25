@@ -1,9 +1,12 @@
 <article class="article-content">
-	<div class="article-banner" style="background-image: url(<%- page.photos %>)">
-		<div class="banner-inner-box">
-			<div class="wrap">
-				<h1 class="article-title"><%- page.title %></h1>
-			</div>
+	<div class="banner-inner-box">
+		<div class="article-banner lazy-bg blur" 
+		style="background-image: url(<%- page.photos %>?imageView2/2/w/64/h/200/format/webp/q/75)"
+		data-lazy="<%- page.photos %>?imageView2/0/format/webp/q/75">
+		<div class="cover"></div>
+		</div>
+		<div class="wrap">
+			<h1 class="article-title"><%- page.title %></h1>
 		</div>
 	</div>
 	<div class="wrap">

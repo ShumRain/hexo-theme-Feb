@@ -1,0 +1,13 @@
+<% if (page.total > 1) { %>
+	<div class="pager wrap">
+		<% for(let i = 0; i < page.total; i++) { %>
+			<div class="page-point <% if (i + 1 === page.current) { %>current<% } %>">
+				<% if (i === 0) { %>
+					<a href="/"></a>
+				<% } else { %>
+					<a href="/page/<%= i+1 %>/"></a>
+				<% } %>
+			</div>
+		<% } %>
+	</div>
+<% } %>
