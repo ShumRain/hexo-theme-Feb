@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+header {
+	padding: 35px 0 20px;
+	.wrap {
+		display: flex;
+		justify-content: space-between;
+	}
+	h1 a {
+		display: flex;
+		color: #b97373;
+		span {
+			display: block;
+			transform: rotate(5deg);
+			font-style: italic;
+			margin-left: 2px;
+		}
+	}
+	.links {
+		display: flex;
+		align-items: center;
+		li {
+			margin-left: 30px;
+			font-size: 13px;
+			font-weight: bold;
+		}
+	}
+	a {
+		color: #999;
+	}
+	.github {
+		transition: all .3s ease-out;
+		fill: #c6cbd1;
+		&:hover {
+			fill: #959da5;
+		}
+	}
+}

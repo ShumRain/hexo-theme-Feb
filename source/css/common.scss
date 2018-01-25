@@ -1,0 +1,14 @@
+@charset "UTF-8";
+@import 'reset.scss';
+@import './_partial/header.scss';
+@import './_partial/footer.scss';
+
+main {
+	padding: 15px 0;
+}
+
+.wrap {
+    max-width: 930px;
+    padding: 0 15px;
+    margin: 0 auto;
+}

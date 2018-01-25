@@ -1,0 +1,25 @@
+
+# beian number
+beian: '蜀ICP备1111111号'
+
+# inner card background and articlepage banner
+banner: [
+	{
+		url: 'http://static.simpledesktops.com/uploads/desktops/2017/10/02/polymagnet.png'
+	},
+	{
+		url: 'http://static.simpledesktops.com/uploads/desktops/2017/07/28/Dog.png'
+  },
+  {
+    url: 'http://static.simpledesktops.com/uploads/desktops/2017/02/28/GeoShapes_2880x1800.png'
+  },
+  {
+    url: 'http://static.simpledesktops.com/uploads/desktops/2016/12/06/Christmas_Trees.png'
+  },
+  {
+    url: 'http://static.simpledesktops.com/uploads/desktops/2017/03/21/showgaze_pb_02.png'
+  },
+  {
+    url: 'http://static.simpledesktops.com/uploads/desktops/2017/02/27/arrow.png'
+  }
+]

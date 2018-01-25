@@ -1,0 +1,23 @@
+<section class="article-list wrap">
+<% page.posts.each(function (post, index) { %>
+	<article class="article-item">
+		<% if(theme.banner[index]) {%>
+		<div class="article-cover" style="background-image: url(<%= theme.banner[index].url %>)">
+		<% } else {%>
+		<div class="article-cover">
+		<% } %>
+			<a href="/<% url_for(post.path) %><%- post.path %>">
+				<h3 class="article-title"><%= post.title %></h3>
+				<ul class="article-info">
+					<p class="article-time"><%= post.date.format("DD") %> <%= post.date.format("MMM") %> <%= post.date.format("YYYY") %></p>
+					<ul class="tag">
+						<% post.tags.forEach(function(i) { %>
+							<li><%= i.name%></li>
+						<% }) %>
+					</ul>
+				</div>
+			</a>
+		</div>
+	</article>
+<% }) %>
+</section>

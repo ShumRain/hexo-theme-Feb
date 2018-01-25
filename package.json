@@ -1,0 +1,22 @@
+{
+	"name": "hexo-theme-feb",
+	"version": "1.0.0",
+	"description": "a simple theme for hexo",
+	"author": "ShumRain",
+	"license": "ISC",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ShumRain/hexo-theme-Feb.git"
+	},
+	"keywords": [
+		"hexo",
+		"theme",
+		"Feb"
+	],
+	"bugs": {
+		"url": "https://github.com/ShumRain/hexo-theme-Feb/issues"
+	},
+	"dependencies": {
+		"hexo-renderer-scss": "^1.1.0"
+	}
+}
