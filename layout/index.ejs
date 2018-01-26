@@ -4,8 +4,8 @@
 		<div class="article-inner">
 			<% if(theme.banner[index]) {%>	
 			<div class="article-cover lazy-bg blur"
-			style="background-image: url(<%= String(theme.banner[(Number(page.current) -1)*6 + index].url) + '?imageView2/2/w/64/h/200/format/webp/q/75' %>)"
-			data-lazy="<%= String(theme.banner[(Number(page.current) -1)*6 + index].url) + '?imageView2/0/format/webp/q/75' %>">
+			style="background-image: url(<%= String(theme.banner[(Number(page.current) -1)*6 + index].url) + '?imageView2/2/w/64/h/200/format/jpg/q/50' %>)"
+			data-lazy="<%= String(theme.banner[(Number(page.current) -1)*6 + index].url) + '?imageView2/0/format/jpg/q/100' %>">
 			</div>
 			<% } else {%>
 				<div class="article-cover"></div>

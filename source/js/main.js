@@ -19,20 +19,22 @@ const throttle = (fn, interval = 250) => {
 	}
 }
 
-const bgiLazy = () => {
-	let lazyBg = Array.from(document.getElementsByClassName('lazy-bg'))
+// const bgiLazy = () => {
+// 	let lazyBg = Array.from(document.getElementsByClassName('lazy-bg'))
 
-	lazyBg.forEach(i => {
-		let tempImg = new Image()
-		tempImg.src = i.getAttribute('data-lazy')
+// 	lazyBg.forEach(i => {
+// 		let tempImg = new Image()
+// 		tempImg.src = i.getAttribute('data-lazy')
 		
-		tempImg.addEventListener('load', () => {
-			i.style.backgroundImage = `url(${tempImg.src})`
-			i.classList.remove('blur')
-			i.removeAttribute('data-lazy')
-			tempImg = null
-		})
-	})
-}
+// 		tempImg.addEventListener('load', () => {
+// 			i.style.backgroundImage = `url(${tempImg.src})`
+// 			i.classList.remove('blur')
+// 			i.removeAttribute('data-lazy')
+// 			tempImg = null
+// 		})
+// 	})
+// }
 
-bgiLazy()
+// window.addEventListener('load', () => {
+// 	bgiLazy()
+// })

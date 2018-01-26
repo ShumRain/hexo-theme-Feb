@@ -3,9 +3,47 @@
 <%- partial('_partial/head') %>
 <body>
 	<%- partial('_partial/header') %>
-    <main>
+    <main id="pjax-container">
         <%- body %>
 	</main>
 <%- partial('_partial/footer.ejs')%>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
+<script>
+	// 一进来有大图就不模糊
+	const bgiLazy = () => {
+		let lazyBg = Array.from(document.getElementsByClassName('lazy-bg'))
+
+		lazyBg.forEach(i => {
+			let tempImg = new Image()
+			tempImg.src = i.getAttribute('data-lazy')
+			
+			tempImg.addEventListener('load', () => {
+				i.style.backgroundImage = `url(${tempImg.src})`
+				i.classList.remove('blur')
+				i.removeAttribute('data-lazy')
+				tempImg = null
+			})
+		})
+	}
+
+	window.addEventListener('load', () => {
+		bgiLazy()
+	})
+
+	$(document).pjax('a', '#pjax-container', {
+		fragment:'#pjax-container',
+		timeout: 1000
+	})
+	$(document).on({
+		'pjax:click': function() {
+		},
+		'pjax:start': function() {
+		},
+		'pjax:end': function() {
+			bgiLazy()
+		}
+	});
+</script>
 </body>
 </html>
