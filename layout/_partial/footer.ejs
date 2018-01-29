@@ -1,10 +1,8 @@
 <footer>
 	<div class="wrap">
-		<p>© 2018 <a href="/">ShumRain</a>. Powered by <a  href="https://hexo.io">Hexo</a> and <a class="underline-a" href="/">Feb</a></p>
+		<p>&copy; <%= new Date().getFullYear() %>  <a href="<%= theme.home %>"><%= theme.customize.footerName %></a>. Powered by <a  href="https://hexo.io">Hexo</a> and <a class="underline-a" href="https://github.com/ShumRain/hexo-theme-Feb">Feb</a></p>
 		<% if (theme.beian) {%>
 			<p><%= theme.beian %></p>
 		<% } %>
 	</div>
 </footer>
-
-<%- js('js/main.js') %>
