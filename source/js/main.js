@@ -96,8 +96,9 @@ const drop = () => {
 	})
 }
 
+drop()
+
 window.addEventListener('load', () => {
 	bgiLazy()
 	pjax()
-	drop()
 })

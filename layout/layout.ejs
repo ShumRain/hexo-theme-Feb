@@ -24,5 +24,21 @@
 <!-- pjax -->
 <%- js('js/main.js') %>
 
+<% if(theme.baidu_src) { %>
+<!-- 百度统计 -->
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script")
+		hm.src = "<%= theme.baidu_src %>"
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s)
+	})()
+</script>
+<!-- 百度统计 -->
+<% } %>
+
+
+
 </body>
 </html>
