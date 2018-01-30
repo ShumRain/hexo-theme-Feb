@@ -1,0 +1,39 @@
+<aside class="read-next">
+	<% if (page.prev) { %>
+		<div class="read-next-item">
+			<% if (page.prev.photos) { %>	
+				<div class="cover lazy-bg blur"
+				style="background-image: url(<%= String(page.prev.photos) + '?imageView2/2/w/64/h/200/format/jpg/q/50' %>)"
+				data-lazy="<%= String(page.prev.photos) + '?imageView2/0/format/jpg/q/100' %>">
+				</div>
+			<% } else { %>
+				<div class="cover"></div>
+			<% } %>
+			<a href="/<% url_for(page.prev.path) %><%- page.prev.path %>">
+				<h2 class="title"><%= page.prev.title %></h2>
+				<% if (page.prev.description) { %>
+				<p><%= page.prev.description %>...</p>
+				<% } %>
+			</a>
+		</div>
+	<% } %>
+
+	<% if (page.next) { %>
+		<div class="read-next-item">
+			<% if (page.next.photos) { %>	
+				<div class="cover lazy-bg blur"
+				style="background-image: url(<%= String(page.next.photos) + '?imageView2/2/w/64/h/200/format/jpg/q/50' %>)"
+				data-lazy="<%= String(page.next.photos) + '?imageView2/0/format/jpg/q/100' %>">
+				</div>
+			<% } else { %>
+				<div class="cover"></div>
+			<% } %>
+			<a href="/<% url_for(page.next.path) %><%- page.next.path %>">
+				<h2 class="title"><%= page.next.title %></h2>
+				<% if (page.next.description) { %>
+				<p><%= page.next.description %>...</p>
+				<% } %>				
+			</a>
+		</div>
+	<% } %>
+</aside>

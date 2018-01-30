@@ -85,6 +85,9 @@ const pjax = () => {
 
 			let openDisqus = document.querySelector('.open-disqus')
 			onloadDisqus(openDisqus)
+
+			const returnTopButton = document.getElementById('return-top')
+			returnTop(returnTopButton)
 		}
 	})
 }

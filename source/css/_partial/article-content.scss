@@ -6,7 +6,7 @@
 		width: 60rem;
 		position: relative;
 		z-index: 2;
-		padding: 4rem 0;
+		padding: 4rem 0 0 0;
 	}
 	.banner-inner-box {
 		position: relative;
@@ -33,7 +33,7 @@
 			background-color: rgba(0, 0, 0, 0.1);
 		}
 	}
-	.article-banner.blur {
+	.blur {
 		filter: blur(20px);
 	}
 	.article-title {
@@ -72,7 +72,8 @@
 	.updated-time {
 		font-size: 1.4rem;
 		color: #999;
-		padding-top: 2.5rem;
+		padding: 2.5rem 0;
+		border-bottom: 1px dashed #e5e5e5;
 	}
 }
 
