@@ -35,6 +35,32 @@ const bgiLazy = () => {
 	})
 }
 
+const onloadDisqus = (open) => {
+    if (open == null) return
+
+    const fn = () => {
+        let shortname = document.querySelector('.shortname').innerHTML
+        open.innerHTML = '稍等哦～ ～'
+
+        let disqusJS = document.querySelector('.disqus-js')
+        disqusJS &&  document.body.removeChild(disqusJS)
+
+        let docfrag = document.createDocumentFragment(),
+            s = document.createElement('script')
+        
+        s.classList.add('disqus-js')
+        s.src = 'https://'+ shortname + '.disqus.com/embed.js'
+        s.setAttribute('data-timestamp', + new Date())
+
+        docfrag.appendChild(s)
+        document.body.appendChild(docfrag)
+
+        s.onerror = () => open.innerHTML = '你需要科学上网 - 。-'
+    }
+    
+	open.addEventListener('click', fn)
+}
+
 const pjax = () => {
 	if (!$ && !jQuery) {
 		console.log('no found jquery')
@@ -56,6 +82,9 @@ const pjax = () => {
 			$('pre code').each(function(i, block) {
 				hljs.highlightBlock(block)
 			})
+
+			let openDisqus = document.querySelector('.open-disqus')
+			onloadDisqus(openDisqus)
 		}
 	})
 }
@@ -96,9 +125,36 @@ const drop = () => {
 	})
 }
 
+const lazy = () => {
+
+}
+
+const returnTop = (returnTopButton) => {
+	if (returnTopButton == null) return
+
+	let returnTopClass = returnTopButton.classList
+
+	window.addEventListener('scroll', throttle(() => {
+		window.scrollY > 1000 ?
+		returnTopClass.add('show'):
+		returnTopClass.remove('show')
+	},500))
+
+	returnTopButton.addEventListener('click', () => {
+		window.scrollTo(0, window)
+	})
+}
+
 drop()
+
 
 window.addEventListener('load', () => {
 	bgiLazy()
 	pjax()
+	
+	const returnTopButton = document.getElementById('return-top')
+	returnTop(returnTopButton)
+
+	let openDisqus = document.querySelector('.open-disqus')
+	onloadDisqus(openDisqus)
 })

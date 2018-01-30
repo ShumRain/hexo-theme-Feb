@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+#return-top {
+    display: none;
+    position: fixed;
+    right: 5%;
+    bottom: 5%;
+    cursor: pointer;
+    z-index: 100;
+    path:hover {
+        fill: #2c2c2c;
+    }
+}
+
+#return-top.show {
+    display: block;
+}

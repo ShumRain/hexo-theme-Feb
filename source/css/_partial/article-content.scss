@@ -44,6 +44,36 @@
 		letter-spacing: -1px;
 		color: #fff;
 	}
+	.article-info {
+		display: flex;
+		color: #fff;
+		font-size: 1.6rem;
+		align-items: center;
+		padding-top: 1rem;
+		ul { display:  flex;}
+		li {
+			margin-left: .5rem;
+		}
+		a {
+			font-size: 1.4rem;
+			line-height: 1.6rem;
+			display: inline-block;
+			padding: 0 1rem;
+			color: #fff;
+			border-radius: .3rem;
+			background: rgba(255,255,255,.3);
+			transition: all .15s ease-out;
+			&:hover {
+				background: rgba(255,255,255,.2);
+				text-decoration: none;
+			}
+		}
+	}
+	.updated-time {
+		font-size: 1.4rem;
+		color: #999;
+		padding-top: 2.5rem;
+	}
 }
 
 @media only screen and (max-width: 930px) {

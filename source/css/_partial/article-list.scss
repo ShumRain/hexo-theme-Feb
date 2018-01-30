@@ -92,6 +92,14 @@
 	}
 }
 
+@media only screen and (max-width: 650px) {
+	.article-list {
+		.article-item {
+			width: 95%;
+		}
+	}
+}
+
 @media only screen and (max-width: 481px) {
 	.article-list {
 		padding: 0;
