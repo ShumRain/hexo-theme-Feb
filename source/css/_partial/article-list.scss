@@ -52,11 +52,8 @@
 		height: 101%;
 		background-position: center;
 		background-size: cover;
-		background-color: #eee;
+		background-color: rgba(29,29,29,.8);
 		transition: filter .3s ease-out;
-	}
-	.article-cover.blur {
-		filter: blur(30px);
 	}
 	.article-title {
 		font-size: 32px;

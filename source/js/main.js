@@ -28,7 +28,6 @@ const bgiLazy = () => {
 		
 		tempImg.addEventListener('load', () => {
 			i.style.backgroundImage = `url(${tempImg.src})`
-			i.classList.remove('blur')
 			i.removeAttribute('data-lazy')
 			tempImg = null
 		})

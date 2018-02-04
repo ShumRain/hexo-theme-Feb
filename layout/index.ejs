@@ -4,7 +4,6 @@
 		<div class="article-inner">
 			<% if(post.photos) {%>	
 			<div class="article-cover lazy-bg blur"
-			style="background-image: url(<%= String(post.photos) + '?imageView2/2/w/64/h/200/format/jpg/q/50' %>)"
 			data-lazy="<%= String(post.photos) + '?imageView2/0/format/jpg/q/100' %>">
 			</div>
 			<% } else {%>
@@ -27,3 +26,4 @@
 </section>
 
 <%- partial('_partial/pagination') %>
+

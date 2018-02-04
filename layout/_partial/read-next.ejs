@@ -3,7 +3,6 @@
 		<div class="read-next-item">
 			<% if (page.prev.photos) { %>	
 				<div class="cover lazy-bg blur"
-				style="background-image: url(<%= String(page.prev.photos) + '?imageView2/2/w/64/h/200/format/jpg/q/50' %>)"
 				data-lazy="<%= String(page.prev.photos) + '?imageView2/0/format/jpg/q/100' %>">
 				</div>
 			<% } else { %>
@@ -22,7 +21,6 @@
 		<div class="read-next-item">
 			<% if (page.next.photos) { %>	
 				<div class="cover lazy-bg blur"
-				style="background-image: url(<%= String(page.next.photos) + '?imageView2/2/w/64/h/200/format/jpg/q/50' %>)"
 				data-lazy="<%= String(page.next.photos) + '?imageView2/0/format/jpg/q/100' %>">
 				</div>
 			<% } else { %>
