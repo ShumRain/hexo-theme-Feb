@@ -60,37 +60,6 @@ const onloadDisqus = (open) => {
 	open.addEventListener('click', fn)
 }
 
-const pjax = () => {
-	if (!$ && !jQuery) {
-		console.log('no found jquery')
-		return
-	}
-
-	$(document).pjax('a', '#pjax-container', {
-		fragment:'#pjax-container',
-		timeout: 1000
-	})
-	$(document).on({
-		'pjax:click': function() {
-		},
-		'pjax:start': function() {
-		},
-		'pjax:end': function() {
-			bgiLazy()
-			
-			$('pre code').each(function(i, block) {
-				hljs.highlightBlock(block)
-			})
-
-			let openDisqus = document.querySelector('.open-disqus')
-			onloadDisqus(openDisqus)
-
-			const returnTopButton = document.getElementById('return-top')
-			returnTop(returnTopButton)
-		}
-	})
-}
-
 const drop = () => {
 	let menu = document.querySelector('.dropdown-toggle'),
 		dropdown = document.querySelector('.dropdown-body'),
@@ -127,10 +96,6 @@ const drop = () => {
 	})
 }
 
-const lazy = () => {
-
-}
-
 const returnTop = (returnTopButton) => {
 	if (returnTopButton == null) return
 
@@ -147,8 +112,160 @@ const returnTop = (returnTopButton) => {
 	})
 }
 
-drop()
+const output = () => {
+    console.log('%c https://github.com/ShumRain ', 'background:#222;color:#bada55')
+}
 
+const getPostContainer = () => {
+	return document.querySelector('.markdown-body')
+}
+
+const lazyload = () => {
+	let container = getPostContainer()
+ 
+	if (container == null) {
+		return false
+	} 
+ 
+	const LAZY_DEFAULT = {
+		 container: container, 
+		 offset: 100, 
+		 throttle: 250, 
+		 unload: false, 
+	 }
+ 
+	 // img isView
+	 const inView = (ele, view) => {
+		 let rect = ele.getBoundingClientRect()
+		 return (
+			 rect.right >= view.l &&
+			 rect.bottom >= view.t &&
+			 rect.left <= view.r &&
+			 rect.top <= view.b
+		 )
+	 }
+ 
+	 class Lazy {
+		 constructor(opts = {}) {
+			 this.opts = Object.assign({}, LAZY_DEFAULT)
+			 this.init()
+		 }
+	 
+		 init() {
+			 let offsetAll = this.opts.offset,
+				 offsetVertical = this.opts.offsetVertical || offsetAll,
+				 offsetHorizontal = this.opts.offsetHorizontal || offsetAll,
+				 offsetTop = this.opts.offsetTop || offsetVertical,
+				 offsetBottom = this.opts.offsetBottom || offsetVertical,
+				 offsetLeft = this.opts.offsetLeft || offsetHorizontal,
+				 offsetRight = this.opts.offsetRight || offsetHorizontal
+			 
+			 this.opts.offset = {
+				 t: offsetTop,
+				 b: offsetBottom,
+				 l: offsetLeft,
+				 r: offsetRight
+			 }
+	 
+			 this.rander()
+	 
+			 window.addEventListener('scroll',throttle(() => {
+				 this.rander()
+			 }, 1000))
+		 }
+	 
+		 rander() {
+			 let container = this.opts.container,
+				 root = this.opts.container,
+				 nodes = container.querySelectorAll('[data-img],[data-img-bg]'),
+				 length = nodes.length,
+				 srcCache,
+				 view = {
+					 l: 0 - this.opts.offset.l,
+					 t: 0 - this.opts.offset.t,
+					 b: window.innerHeight + this.opts.offset.b,
+					 r: window.innerWidth + this.opts.offset.r
+				 }
+	 
+			 Array.from(nodes).forEach((ele, index) => {
+				 if (inView(ele, view)) {
+					 //图片出现在可视区，unload为true，也就是不在可视区时候卸载图片资源
+					 if (this.opts.unload && !ele.getAttribute('data-lazy-placeholer')) {
+						 ele.setAttribute('data-img-placeholer', ele.src)
+					 }
+ 
+					 if (ele.getAttribute('data-img-bg') !== null) {
+						 ele.style.backgroundImage = `url(${ele.getAttribute('data-img-bg')})`
+					 } else if (ele.src !== (srcCache = ele.getAttribute('data-img'))) {
+						 ele.src = srcCache
+					 }
+ 
+					 if (!this.opts.unload) {
+						 ele.removeAttribute('data-img')
+						 ele.removeAttribute('data-img-bg')
+					 }
+					 //回调函数
+					 this.opts.callback && this.opts.callback(ele, 'load')
+				 }
+				 //不在可视区内，移除图片元素
+				 else if (this.opts.unload && !!(srcCache = ele.getAttribute('data-lazy-placeholer'))) {
+					 if (ele.getAttribute('data-img-bg' !== null)) {
+						 ele.style.backgroundImage = `url(${srcCache})`
+					 } else {
+						 ele.src = srcCache
+					 }
+					 //回调函数
+					 this.opts.callback && this.opts.callback(ele, 'load')
+				 }
+			 })
+	 
+			 if (!length) {
+				 this.detach()
+			 }
+		 }
+	 
+		 detach() {
+			 this.opts.container.removeEventListener('scroll', throttle)
+		 }
+	 }
+ 
+	 new Lazy()
+ }
+
+const pjax = () => {
+	if (!$ && !jQuery) {
+		console.log('no found jquery')
+		return
+	}
+
+	$(document).pjax('a', '#pjax-container', {
+		fragment:'#pjax-container',
+		timeout: 1000
+	})
+	$(document).on({
+		'pjax:click': function() {
+		},
+		'pjax:start': function() {
+		},
+		'pjax:end': function() {
+			bgiLazy()
+			
+			$('pre code').each(function(i, block) {
+				hljs.highlightBlock(block)
+			})
+
+			let openDisqus = document.querySelector('.open-disqus')
+			onloadDisqus(openDisqus)
+
+			const returnTopButton = document.getElementById('return-top')
+			returnTop(returnTopButton)
+
+			lazyload()
+		}
+	})
+}
+
+drop()
 
 window.addEventListener('load', () => {
 	bgiLazy()
@@ -159,4 +276,7 @@ window.addEventListener('load', () => {
 
 	let openDisqus = document.querySelector('.open-disqus')
 	onloadDisqus(openDisqus)
+
+	output()
+	lazyload()
 })
